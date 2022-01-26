@@ -1,117 +1,153 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
-const generateReadMe = require('./src/page-setup')
-const {writeFile, generateMarkdown} = require('./develop/utils/generateMarkdown')
+const { template } = require('lodash');
 
 
-
-const promptUser = () => {
-    return inquirer.prompt([
+ inquirer.prompt([
         {
             type: 'input',
-            name: 'readMe',
-            message: 'Enter project title',
-            validate: titleInput => {
-                if (titleInput) {
-                    return true;
-                } else {
-                    console.log('Please enter project title');
-                    return false;
-                }    
+            name: 'title',
+            message: 'What is the name of your project? (Required)',
+            validate: nameInput => {
+            if (nameInput) {
+                return true;
+            } else {
+                console.log('You need to enter a project name!');
+                return false;
+            }
             }
         },
         {
             type: 'input',
-            name: 'github',
-            message: 'Enter your GitHub Username (Required)',
-            validate: githubInput => {
-                if (githubInput) {
-                    return true;
-                } else {
-                    console.log('Please enter your GitHub username!');
-                    return false;
-                }
-        
-            }
-        },
-        {
-            type: 'confirm',
-            name: 'confirmAbout',
-            message: 'Would you like to enter some information about your repository?',
-            default: true
-        },
-        {
-            type: 'input',
-            name: 'about',
-            message: 'Provide some information about repository',
-            when: ({ confirmAbout }) => confirmAbout
-        }
-    
-
-    ]); 
-};
-const writeToReadMe = fileContent => {
-    if (!fileContent.inputs) {
-    fileContent.inputs = [];
-    }
-return inquirer.prompt([
-    {
-        type: 'input',
-        name: 'name',
-        message: 'What is the name of your project? (Required)',
-        validate: nameInput => {
-          if (nameInput) {
+            name: 'description',
+            message: 'Provide a description of the project (Required)',
+            validate: descriptionInput => {
+            if (descriptionInput) {
             return true;
-          } else {
-            console.log('You need to enter a project name!');
-            return false;
-          }
-        }
-      },
-      {
-        type: 'input',
-        name: 'description',
-        message: 'Provide a description of the project (Required)',
-        validate: descriptionInput => {
-          if (descriptionInput) {
-            return true;
-          } else {
+            } else {
             console.log('You need to enter a project description!');
             return false;
-          }
-        }
-      },
+            }
+            }
+        },
+        {
+            type: 'input',
+            name: 'installation',
+            message:'What are the steps required to install your project? ',
+            validate: installInput => {
+                if (installInput) {
+                return true;
+                } else {
+                console.log('Provide installation instructions');
+                return false;
+                }
+            }
+        },
+        {
+            type:'input',
+            name:'usage',
+            message:'How is your app used?',
+                validate: usageInput => {
+                    if (usageInput) {
+                    return true;
+                    } else {
+                    console.log('Provide installation instructions');
+                    return false;
+                    }
+                }
+        },
+        {
+            type:'list',
+            name:'license',
+            message:'what license did you choose?(Required)',
+            choices:['The MIT License', 'The GPL License', 'N/A'],
+                validate: licenseInput => {
+                    if (licenseInput) {
+                    return true;
+                    } else {
+                    console.log('Please select license');
+                    return false;
+                    }
+                }
+        },
+        {
+                type: 'input',
+                name: 'github',
+                message: 'Enter your GitHub Username (Required)',
+                    validate: githubInput => {
+                        if (githubInput) {
+                        return true;
+                        } else {
+                        console.log('Please enter your GitHub username!');
+                        return false;
+                        }
+                    }
+        },
+        {
+                type: 'input',
+                name: 'email',
+                message: 'Enter your E-mail (Required)',
+                     validate: emailInput => {
+                        if (emailInput) {
+                        return true;
+                        } else {
+                        console.log('Please enter your GitHub username!');
+                        return false;
+                        }
+                    }
+        },
+
     ])
-    .then(fileData => {
-        fileContent.inputs.push(fileData);
-        if (fileData.confirmAddProject) {
-            return writeToReadMe(fileContent);
-        } else {
-         return fileContent;
-        }
-    });
-};
-  
+    .then(({
+        title,
+        description,
+        installation,
+        usage,
+        contribution,
+        license,
+        github,
+        email,
+    })=>{
+        const readMeTemplate = `# ${title}
 
-// TODO: Create an array of questions for user input
-// const questions = [];
+        * [Description](#description)
+        * [Installation](#installation)
+        * [Usage](#usage)
+        * [Contribution](#contribution)
+        * [License](#license)
+        
+        # Description
+        ${description}
+        
+        ## Installation
+        ${installation}
+        
+        ## Usage
+        ${usage}
+        
+        ## Contribution
+        ${contribution}
+        
+        ## License
+        ${license}
+        
+        # Contact
+        * GitHub: ${github}
+        * E-mail: ${email}`;
+        
+        newReadMe(title,readMeTemplate)
+    }
+    );
 
-// TODO: Create a function to write README file
-// function writeToFile(fileName, data) {}
-// const writeToFile = fileContent => {
+    function newReadMe(projectName,data){
+        fs.writeFile(`./${projectName.toLowerCase().split('').join('')}.md`, data, err => { 
+            if(err){
+            console.log(err)
+            }
+            console.log('ReadMe Generated');
+        })    
+    };
 
 
-// }
-
-// TODO: Create a function to initialize app
-function init() {}
-
-// Function call to initialize app
-init();
-
-promptUser()
-.then(writeToReadMe)
-.then(fileContent => {
-    return writeToReadMe(fileContent);
-})
+    

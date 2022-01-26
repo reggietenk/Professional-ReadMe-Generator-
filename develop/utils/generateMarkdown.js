@@ -1,8 +1,8 @@
 const fs = require ('fs');
 
-const writeFile = fileContent => {
+const writeFile = (fileContent, readGen) => {
     return new Promise((resolve, reject) => {
-      fs.writeFile('./dist/README.md', fileContent, err => {
+      fs.writeFile(`./${readGen.toLowerCase().split('').join('')}.md`, fileContent, err => {
         if (err) {
           reject(err);
           return;
@@ -10,7 +10,7 @@ const writeFile = fileContent => {
   
         resolve({
           ok: true,
-          message: 'File created!'
+          message: 'README.md generated'
         });
       });
     });
