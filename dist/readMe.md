@@ -1,34 +1,36 @@
+
 # Sample ReadMe
-    ## Table of Contents
-    * [Description](#description)
-    * [Installation](#installation)
-    * [Usage](#usage)
-    * [Contribution](#contribution)
-    * [License](#license)
-      
-    # Description
-      This project was created with node.js, after answering a prompt of questions a readMe will be generated based on the inputs.
-      
-    ## Installation
-      Answer a series of questions& npm commands
-      
-    ## Usage
-      This app is used to create a readMe.md file based on user inputs about project info
 
-    ##Test
-      No test were performed.
+## Table of Contents
+  * [Description](#description)
+  * [Installation](#installation)
+  * [Usage](#usage)
+  * [Contribution](#contribution)
+  * [License](#license)
+      
+# Description
+    ReadMe generator based on user input.
+      
+## Installation
+    Answer a series of prompts then a readMe is generated based on answers.
+      
+## Usage
+    This app is used to generate readMe 
+
+## Test
+    No test were performed.
         
-    ## Contribution
-      undefined
+## Contribution
+    undefined
       
-    ## License
-      The MIT License
+## License
+    The MIT License
       
 
-      # Questions
+# Questions
 
-      * GitHub: reggietenk(https://github.com/reggietenk)
-      * E-mail: reggietenk@gmail.com;
+  * [GitHub]: reggietenk(https://github.com/reggietenk)
+  * [E-mail]: reggietenkorang@gmail.com;
       
   
 

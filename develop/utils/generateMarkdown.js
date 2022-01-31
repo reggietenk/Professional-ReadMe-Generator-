@@ -20,37 +20,39 @@ const renderGitHubLink = (userId) => {
 
 // generate content for readMe
 function generateMarkdown(projectData) {
-  return `# ${projectData.title}
-    ## Table of Contents
-    * [Description](#description)
-    * [Installation](#installation)
-    * [Usage](#usage)
-    * [Contribution](#contribution)
-    * [License](#license)
-      
-    # Description
-      ${projectData.description}
-      
-    ## Installation
-      ${projectData.installation}
-      
-    ## Usage
-      ${projectData.usage}
+  return `
+# ${projectData.title}
 
-    ##Test
-      ${projectData.test}
+## Table of Contents
+  * [Description](#description)
+  * [Installation](#installation)
+  * [Usage](#usage)
+  * [Contribution](#contribution)
+  * [License](#license)
+      
+# Description
+    ${projectData.description}
+      
+## Installation
+    ${projectData.installation}
+      
+## Usage
+    ${projectData.usage}
+
+## Test
+    ${projectData.test}
         
-    ## Contribution
-      ${projectData.contribution}
+## Contribution
+    ${projectData.contribution}
       
-    ## License
-      ${projectData.license}
+## License
+    ${projectData.license}
       
 
-      # Questions
+# Questions
 
-      * GitHub: ${renderGitHubLink(projectData.github)}
-      * E-mail: ${projectData.email};
+  * [GitHub]: ${renderGitHubLink(projectData.github)}
+  * [E-mail]: ${projectData.email};
       
   
 
