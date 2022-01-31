@@ -73,7 +73,6 @@ const writeReadMe = (fileContent) => {
         ok: true,
         message: 'ReadMe File created!'
       });
-      console.log(resolve)
     });
   });
 };    

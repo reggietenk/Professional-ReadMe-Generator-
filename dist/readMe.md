@@ -1,5 +1,5 @@
 
-# Sample ReadMe 
+# Sample ReadMe
 
 ## Table of Contents
   * [Description](#description)
@@ -9,13 +9,13 @@
   * [License](#license)
       
 # Description
-    This app was created to generate readMe.md files based on user input about project info.
+    This app was created to generate readMe.md files based on user input.
       
 ## Installation
-    Answer series of questions to generate readMe.
+    Answer a series of questions to generate readMe.
       
 ## Usage
-    Used to generate readMe.md file based on user input.
+    This is used to generate readMe file based on user input.
 
 ## Test
     No test were performed.
