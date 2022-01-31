@@ -14,14 +14,17 @@ The professional readMe generate is your one stop app for readMe creation. This 
 
 
 ## Installation
+
+Node.js is needed to run application
 Install npm using command lines (npm install)
+
 
 
 ## Usage 
 
-```md
-![alt text](assets/images/readMedemo.png)
-```
+
+![screenshot](./assets/images/readMedemo.png)
+
 
 To watch app demo please click here [https://www.loom.com/share/a3804a3e19974a79816615bbf554f672]
 
@@ -40,7 +43,6 @@ License Options:
 
 ![badmath](https://img.shields.io/github/languages/top/lernantino/badmath)
 
-Badges hosted by [shields.io](https://shields.io/). 
 
 
 ## Contribution
