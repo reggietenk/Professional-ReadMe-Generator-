@@ -51,13 +51,15 @@ function generateMarkdown(projectData) {
 
 # Questions
 
-  * [GitHub]: ${renderGitHubLink(projectData.github)}
-  * [E-mail]: ${projectData.email};
+  * GitHub Username: ${renderGitHubLink(projectData.github)}
+  * E-mail: ${projectData.email};
       
   
 
 `;
 }
+
+console.log(generateMarkdown)
 
 const writeReadMe = (fileContent) => {
   return new Promise((resolve, reject) => {

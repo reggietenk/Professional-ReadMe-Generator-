@@ -86,6 +86,19 @@ const promptUser = choiceData => {
                 }
         },
         {
+                type:'input',
+                name:'contribution',
+                message:'Enter contributions',
+                validate: contributionInput => {
+                    if (contributionInput) {
+                    return true;
+                    } else {
+                    console.log('Please enter your GitHub username!');
+                    return false;
+                    }
+                }
+        },
+        {
                 type: 'input',
                 name: 'github',
                 message: 'Enter your GitHub Username (Required)',
