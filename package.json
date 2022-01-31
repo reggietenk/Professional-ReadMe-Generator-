@@ -19,5 +19,6 @@
   "bugs": {
     "url": "https://github.com/reggietenk/Professional-ReadMe-Generator-/issues"
   },
-  "homepage": "https://github.com/reggietenk/Professional-ReadMe-Generator-#readme"
+  "homepage": "https://github.com/reggietenk/Professional-ReadMe-Generator-#readme",
+  "devDependencies": {}
 }

@@ -1,10 +1,12 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
-const fs = require('fs');
-const { template } = require('lodash');
+const {writeReadMe, generateMarkdown} = require('./develop/utils/generateMarkdown')
 
 
- inquirer.prompt([
+const promptUser = choiceData => {
+    console.log(choiceData)
+
+ return inquirer.prompt([
         {
             type: 'input',
             name: 'title',
@@ -72,6 +74,19 @@ const { template } = require('lodash');
                 }
         },
         {
+                type:'input',
+                name:'test',
+                message:'explain testing process (Required)',
+                validate: testInput => {
+                    if (testInput) {
+                    return true;
+                    } else {
+                    console.log('Please enter your GitHub username!');
+                    return false;
+                    }
+                }
+        },
+        {
                 type: 'input',
                 name: 'github',
                 message: 'Enter your GitHub Username (Required)',
@@ -99,55 +114,19 @@ const { template } = require('lodash');
         },
 
     ])
-    .then(({
-        title,
-        description,
-        installation,
-        usage,
-        contribution,
-        license,
-        github,
-        email,
-    })=>{
-        const readMeTemplate = `# ${title}
 
-        * [Description](#description)
-        * [Installation](#installation)
-        * [Usage](#usage)
-        * [Contribution](#contribution)
-        * [License](#license)
-        
-        # Description
-        ${description}
-        
-        ## Installation
-        ${installation}
-        
-        ## Usage
-        ${usage}
-        
-        ## Contribution
-        ${contribution}
-        
-        ## License
-        ${license}
-        
-        # Contact
-        * GitHub: ${github}
-        * E-mail: ${email}`;
-        
-        newReadMe(title,readMeTemplate)
-    }
-    );
+.then(choiceData => {
+    return generateMarkdown(choiceData)
+})
+.then(readMe => {
+    return writeReadMe(readMe);
+})
 
-    function newReadMe(projectName,data){
-        fs.writeFile(`./${projectName.toLowerCase().split('').join('')}.md`, data, err => { 
-            if(err){
-            console.log(err)
-            }
-            console.log('ReadMe Generated');
-        })    
-    };
+}
 
 
-    
+
+
+promptUser()
+
+
