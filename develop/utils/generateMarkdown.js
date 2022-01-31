@@ -13,11 +13,12 @@ const fs = require('fs')
 // // If there is no license, return an empty string
 // function renderLicenseSection(license) {}
 
+
 const renderGitHubLink = (userId) => {
     return (userId) + '(https://github.com/'+userId+')'
 }
 
-// TODO: Create a function to generate markdown for README
+// generate content for readMe
 function generateMarkdown(projectData) {
   return `# ${projectData.title}
 
@@ -36,16 +37,17 @@ function generateMarkdown(projectData) {
   //     ## Usage
   //     ${projectData.usage}
 
-  //     Test
+  //     ##Test
   //     ${projectData.test}
-      
+        
   //     ## Contribution
   //     ${projectData.contribution}
       
   //     ## License
   //     ${projectData.license}
       
-  //     # Contact
+
+  //     # Questions
   //     * GitHub: ${renderGitHubLink(projectData.github)}
   //     * E-mail: ${projectData.email};
       

@@ -1,8 +1,7 @@
-// TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const {writeReadMe, generateMarkdown} = require('./develop/utils/generateMarkdown')
 
-
+// prompt questions for ReadMe
 const promptUser = choiceData => {
     console.log(choiceData)
 
@@ -62,8 +61,8 @@ const promptUser = choiceData => {
         {
             type:'list',
             name:'license',
-            message:'what license did you choose?(Required)',
-            choices:['The MIT License', 'The GPL License', 'N/A'],
+            message:'What license did you choose?(Required)',
+            choices:['The MIT License', 'The GPL License', 'N/A',],
                 validate: licenseInput => {
                     if (licenseInput) {
                     return true;
@@ -76,7 +75,7 @@ const promptUser = choiceData => {
         {
                 type:'input',
                 name:'test',
-                message:'explain testing process (Required)',
+                message:'Explain the testing process for your project (Required)',
                 validate: testInput => {
                     if (testInput) {
                     return true;
@@ -114,13 +113,17 @@ const promptUser = choiceData => {
         },
 
     ])
-
+// return to generateMarkdown to generate readMe 
 .then(choiceData => {
     return generateMarkdown(choiceData)
 })
 .then(readMe => {
     return writeReadMe(readMe);
 })
+
+.catch(err => {
+    console.log(err);
+  });
 
 }
 
